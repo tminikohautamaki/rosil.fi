@@ -1,0 +1,5 @@
+node_modules/
+temporary screenshots/
+*.msi
+*.zip
+og-image.jpg.png
