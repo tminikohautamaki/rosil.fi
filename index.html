@@ -328,36 +328,50 @@
     footer a { color: rgba(245,245,240,0.5); text-decoration: none; transition: color 0.15s; }
     footer a:hover { color: #F5C400; }
 
-    /* Nav responsive */
-    .nav-desktop { display: none; }
-    .nav-hamburger { display: flex; }
-    @media (min-width: 768px) {
-      .nav-desktop { display: flex; align-items: center; gap: 2rem; }
-      .nav-hamburger { display: none; }
+    /* Nav layout */
+    #navbar { justify-content: flex-start; }
+    #navbar .nav-logo { margin-right: auto; }
+    #navbar .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    #navbar .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 1rem;
+    }
+    @media (max-width: 767px) {
+      #navbar .nav-desktop { display: none !important; }
+      #navbar .nav-toggle { display: flex !important; }
     }
 
-    /* Hamburgeri */
-    .hamburger span {
+    /* Hamburgeri viivat */
+    .nav-toggle span {
       display: block;
       width: 24px;
       height: 2px;
       background: #F5F5F0;
       transition: transform 0.25s ease, opacity 0.25s ease;
     }
-    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
   </style>
 </head>
 <body>
 
   <!-- ==================== NAVIGATION ==================== -->
   <nav id="navbar" aria-label="Päänavigaatio">
-    <a href="/" class="font-display font-bold text-lg tracking-tight" style="color:#F5C400; letter-spacing:-0.02em;">
+    <a href="/" class="nav-logo" style="font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; color:#F5C400; text-decoration:none; letter-spacing:-0.02em; flex-shrink:0;">
       rosil<span style="color:#F5F5F0;">.</span>fi
     </a>
 
-    <!-- Desktop nav -->
     <div class="nav-desktop">
       <a href="#ongelma" class="nav-link">Ongelma</a>
       <a href="#ratkaisu" class="nav-link">Ratkaisu</a>
@@ -366,8 +380,7 @@
       <a href="#cta" class="btn-primary" style="padding: 0.6rem 1.4rem; font-size:0.9rem;">Varaa puhelu →</a>
     </div>
 
-    <!-- Mobile hamburger -->
-    <button class="hamburger nav-hamburger flex-col gap-1.5 bg-transparent border-0 cursor-pointer p-1" id="menuBtn" aria-label="Avaa menu" aria-expanded="false">
+    <button class="nav-toggle" id="menuBtn" aria-label="Avaa menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -752,7 +765,8 @@
 
     function toggleMenu(open) {
       menuOpen = open;
-      menuBtn.classList.toggle('open', open);
+      menuBtn.classList.toggle('nav-toggle', true);
+    menuBtn.classList.toggle('open', open);
       mobileMenu.classList.toggle('open', open);
       menuBtn.setAttribute('aria-expanded', open);
       mobileMenu.setAttribute('aria-hidden', !open);
