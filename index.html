@@ -328,6 +328,14 @@
     footer a { color: rgba(245,245,240,0.5); text-decoration: none; transition: color 0.15s; }
     footer a:hover { color: #F5C400; }
 
+    /* Nav responsive */
+    .nav-desktop { display: none; }
+    .nav-hamburger { display: flex; }
+    @media (min-width: 768px) {
+      .nav-desktop { display: flex; align-items: center; gap: 2rem; }
+      .nav-hamburger { display: none; }
+    }
+
     /* Hamburgeri */
     .hamburger span {
       display: block;
@@ -350,7 +358,7 @@
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
+    <div class="nav-desktop">
       <a href="#ongelma" class="nav-link">Ongelma</a>
       <a href="#ratkaisu" class="nav-link">Ratkaisu</a>
       <a href="#case" class="nav-link">Tulokset</a>
@@ -359,7 +367,7 @@
     </div>
 
     <!-- Mobile hamburger -->
-    <button class="hamburger flex md:hidden flex-col gap-1.5 bg-transparent border-0 cursor-pointer p-1" id="menuBtn" aria-label="Avaa menu" aria-expanded="false">
+    <button class="hamburger nav-hamburger flex-col gap-1.5 bg-transparent border-0 cursor-pointer p-1" id="menuBtn" aria-label="Avaa menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
